@@ -3,7 +3,6 @@ package com.example.querydsl.example;
 import com.example.querydsl.domain.Team;
 import com.example.querydsl.domain.User;
 import com.example.querydsl.dto.UserSearchDto;
-import com.example.querydsl.repository.UserQuerydslSearchExpressionProvider;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import org.junit.jupiter.api.BeforeEach;
@@ -13,12 +12,10 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.context.annotation.Import;
 import org.springframework.util.StringUtils;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
-
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
@@ -31,14 +28,11 @@ import static org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTest
  * 동적 검색
  */
 @DataJpaTest
-@Import({UserQuerydslSearchExpressionProvider.class})
 @AutoConfigureTestDatabase(replace = NONE)
 public class DynamicSearchTest {
 
 	@Autowired
 	EntityManager em;
-	@Autowired
-	UserQuerydslSearchExpressionProvider expressionProvider;
 
 	private final String platformTeamName = "서비스 플랫폼";
 	private final String solutionTeamName = "서비스 솔루션";
